@@ -1,0 +1,17 @@
+{
+    "name": "lang-uk-dummy",
+    "version": "1.0.0",
+    "authors": [
+        "Nikita Pavliuchenko <kitich@i.ua>"
+    ],
+    "description": "HTML dummy for repsonsive lang-uk site",
+    "devDependencies": {
+        "grunt": "^0.4.5",
+        "grunt-cli": "*",
+        "grunt-contrib-less": "^1.0.1",
+        "grunt-contrib-watch": "^0.6.1"
+    },
+    "scripts": {
+        "grunt": "grunt"
+    }
+}
