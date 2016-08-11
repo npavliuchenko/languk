@@ -1,17 +1,20 @@
 {
-    "name": "lang-uk-dummy",
-    "version": "1.0.0",
-    "authors": [
-        "Nikita Pavliuchenko <kitich@i.ua>"
-    ],
-    "description": "HTML dummy for repsonsive lang-uk site",
-    "devDependencies": {
-        "grunt": "^0.4.5",
-        "grunt-cli": "*",
-        "grunt-contrib-less": "^1.0.1",
-        "grunt-contrib-watch": "^0.6.1"
-    },
-    "scripts": {
-        "grunt": "grunt"
-    }
+  "name": "lang-uk-dummy",
+  "version": "1.0.0",
+  "authors": [
+    "Nikita Pavliuchenko <kitich@i.ua>"
+  ],
+  "description": "HTML dummy for repsonsive lang-uk site",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-bake": "^1.7.2",
+    "grunt-cli": "*",
+    "grunt-contrib-less": "^1.0.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-svg2png": "^0.2.7",
+    "grunt-svgmin": "^3.3.0"
+  },
+  "scripts": {
+    "grunt": "grunt"
+  }
 }

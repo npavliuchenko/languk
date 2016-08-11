@@ -1,0 +1,56 @@
+@social-icon-size: @basic-unit * 2;
+@social-padding-mob: @basic-padding;
+@social-padding-dtp: @basic-padding * 2;
+@social-height: @social-icon-size + @social-padding-mob * 2;
+
+#socials {
+    background: @color-background;
+    margin-top: -@social-height;
+    box-shadow: 0 -3px 3px #222;
+
+    ul {
+        padding: @social-padding-mob (@social-padding-mob / 2) 0;
+        overflow: hidden;
+    }
+
+    li {
+        float: left;
+        padding: 0 (@social-padding-mob / 2) @social-padding-mob;
+    }
+
+    a {
+        display: block;
+        width: @social-icon-size;
+        height: @social-icon-size;
+        background: no-repeat center center;
+        background-size: 100%;
+        overflow: hidden;
+        text-indent: -999em;
+        //@TODO: PNG fallback
+
+        &.fb-icon {
+            background-image: url(../images/converted/icons/fb.svg);
+        }
+
+        &.git-icon {
+            background-image: url(../images/converted/icons/git.svg);
+        }
+    }
+
+    @media @screen-dtp {
+        position: absolute;
+        right: 0;
+        margin-top: 0;
+        top: @mainnav-height-dtp + @header-logo-section-height - @social-height;
+        box-shadow: none;
+
+        ul {
+            padding: 0 (@social-padding-dtp / 2);
+        }
+
+        li {
+            float: right;
+            padding: 0 (@social-padding-dtp / 2) @social-padding-dtp;
+        }
+    }
+}

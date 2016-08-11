@@ -1,0 +1,349 @@
+@blueprint-height-mob: 280px;
+@blueprint-height-tab: 320px;
+@blueprint-height-dtp: 400px;
+
+@blueprint-label-size-mob: @font-ps-multiplier * 4;
+@blueprint-label-size-tab: @font-ps-multiplier * 5;
+@blueprint-label-size-dtp: @font-ps-multiplier * 6;
+@blueprint-label-width: 6em;
+@blueprint-label-height: @basic-unit;
+@blueprint-icon-size: (100% * 200 / 1280); //
+@blueprint-icon-app-size: @blueprint-icon-size * 1.5;
+@blueprint-icon-min-size: 64px;
+@blueprint-icon-border-mob: 3px;
+@blueprint-icon-border-tab: 4px;
+@blueprint-icon-border-dtp: 5px;
+
+@blueprint-color-background: @color-blueprint;
+@blueprint-color-scheme: @palette-white;
+@blueprint-color-icon: @palette-black-light;
+@blueprint-shadow-opacity: 0.25;
+@blueprint-shadow-size: 3px;
+
+@blueprint-breakpoint-width: ((@blueprint-icon-min-size / @blueprint-icon-size) * 100% + @basic-padding * 2);
+@blueprint-breakpoint: ~"only screen and (max-width: @{blueprint-breakpoint-width})";
+
+
+#blueprint {
+
+    //
+    // Shadow layout
+    //
+
+    background: @color-blueprint;
+    box-shadow: 0 2px 5px #111;
+    position: relative;
+
+    &::before,
+    &::after {
+        position: absolute;
+        width: 100%;
+        height: @blueprint-shadow-size;
+    }
+
+    &::before {
+        content: '';
+        .shadow-top(@blueprint-shadow-opacity);
+        top: 0px;
+    }
+
+    &::after {
+        .shadow-bottom(@blueprint-shadow-opacity);
+        bottom: 0px;
+    }
+
+    @media @screen-dtp {
+        box-shadow: none;
+
+        &::after {
+            content: '';
+        }
+    }
+
+    //
+    // Contents
+    //
+
+    ul {
+        position: relative;
+        height: @blueprint-height-mob;
+
+        @media @screen-tab {
+            height: @blueprint-height-tab;
+        }
+
+        @media @screen-dtp {
+            height: @blueprint-height-dtp;
+        }
+    }
+
+    .item {
+        // background: green; //@TODO: remove!
+        position: absolute;
+        width: @blueprint-icon-size;
+        height: 0;
+        padding-bottom: @blueprint-icon-size;
+        max-width: @blueprint-breakpoint-width;
+
+        .label {
+            // background: rgba(255, 255, 255, 0.5); //@TODO: remove!
+            .font-jura();
+            font-size: @blueprint-label-size-mob;
+            line-height: @basic-padding * 0.8;
+            height: @blueprint-label-height;
+            text-transform: lowercase;
+            text-align: center;
+            position: absolute;
+            left: 50%;
+            width: @blueprint-label-width;
+            margin: -@blueprint-icon-border-mob -(@blueprint-label-width / 2);
+
+
+        }
+
+        a {
+            color: white;
+        }
+
+        .icon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            min-width: @blueprint-icon-min-size;
+            min-height: @blueprint-icon-min-size;
+            border: @blueprint-icon-border-mob solid white;
+            border-radius: 50% 50%;
+            background: @blueprint-color-background;
+        }
+
+        svg {
+            @add-size: 30%;
+            margin: -(@add-size / 2);
+            width: 100% + @add-size;
+            height: 100% + @add-size;
+            position: relative;
+            //@TODO: PNG fallback
+        }
+
+        //
+        // Individual icons customization
+        //
+
+        .align-top() {
+            top: (@basic-padding * 2);
+
+            .icon {
+                top: 0;
+            }
+
+            .label {
+                top: -@blueprint-label-height;
+            }
+        }
+
+        .align-middle() {
+            top: 50%;
+            margin-top: -(@blueprint-icon-size / 2);
+
+            .label {
+                bottom: -@blueprint-label-height;
+            }
+
+            .icon {
+                bottom: 0;
+                // top: 50%;
+                // transform: translateY(-50%); //@TODO: test with -margin
+            }
+        }
+
+        .align-bottom() {
+            bottom: (@basic-padding * 2);
+
+            .icon {
+                bottom: 0;
+            }
+
+            .label {
+                bottom: -@blueprint-label-height;
+            }
+        }
+
+        .align-left(@pos: edge) {
+            & when (@pos = edge) {
+                left: 0;
+            }
+            & when (@pos = center) {
+                left: (@blueprint-icon-size * 1.2);
+            }
+
+            .icon {
+                left: 0;
+            }
+        }
+
+        .align-right(@pos: edge) {
+            & when (@pos = edge) {
+                right: 0;
+            }
+            & when (@pos = center) {
+                right: (@blueprint-icon-size * 1.2);
+            }
+
+            .icon {
+                right: 0;
+            }
+        }
+
+
+
+        &.corpus {
+            .align-left();
+            .align-middle();
+
+            svg {
+                top: 13%;
+            }
+        }
+
+        &.dictionary {
+            .align-left(center);
+            .align-top();
+        }
+
+        &.gazetteer {
+            .align-left(center);
+            .align-bottom();
+        }
+
+        &.service {
+            .align-right(center);
+            .align-top();
+
+            svg {
+                left: 10%;
+                top: 10%;
+            }
+        }
+
+        &.library {
+            .align-right(center);
+            .align-bottom();
+
+            svg {
+                top: 5%;
+            }
+        }
+
+        &.model {
+            .align-right();
+            .align-middle();
+            right: 0;
+
+            svg {
+                top: -5%;
+            }
+        }
+
+        &.app {
+            width: @blueprint-icon-app-size;
+            height: 0;
+            padding-bottom: @blueprint-icon-app-size;
+            left: 50%;
+            top: 50%;
+            margin-left: -(@blueprint-icon-app-size / 2);
+            margin-top: -(@blueprint-icon-app-size / 2);
+        }
+
+        @media @blueprint-breakpoint {
+            &.corpus,
+            &.service,
+            &.library {
+                .label {
+                    text-align: left;
+                    left: -@blueprint-icon-border-mob;
+                    right: auto;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+
+            &.model,
+            &.dictionary,
+            &.gazetteer {
+                .label {
+                    text-align: right;
+                    right: -@blueprint-icon-border-mob;
+                    left: auto;
+                    margin-left: 0;
+                    margin-right: 0;
+                }
+            }
+        }
+    }
+
+    .other {
+
+    }
+
+    .connector {
+        position: absolute;
+
+        svg {
+            width: 100%;
+            //height: auto;
+        }
+
+        &.corpus {
+            top: 50%;
+            left: @blueprint-icon-size;
+            right: 50% + (@blueprint-icon-app-size / 2);
+
+            svg {
+                margin-top: -50%;
+            }
+        }
+
+        &.model {
+            top: 50%;
+            left: -200%;
+            right: 100%;
+            margin-right: @blueprint-icon-border-dtp;
+            line-height: 0;
+
+            svg {
+                margin: 0;
+                margin-top: -50%;
+            }
+        }
+
+        &.service {
+            left: 57%;
+            width: 12%;
+            top: 18%;
+        }
+    }
+
+    @media @screen-tab {
+        .item .label {
+            font-size: @blueprint-label-size-tab;
+            margin-top: -@blueprint-icon-border-tab;
+            margin-bottom: -@blueprint-icon-border-tab;
+        }
+
+        .item .icon {
+            border-width: @blueprint-icon-border-tab;
+        }
+    }
+
+    @media @screen-dtp {
+        .item .label {
+            font-size: @blueprint-label-size-dtp;
+            margin-top: -@blueprint-icon-border-dtp;
+            margin-bottom: -@blueprint-icon-border-dtp;
+        }
+
+        .item .icon {
+            border-width: @blueprint-icon-border-dtp;
+        }
+    }
+}

@@ -1,0 +1,43 @@
+.wing(@bgr) {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: @infinity;
+    background: @bgr;
+    z-index: -1;
+    //@TODO: add shadows
+}
+
+.left-wing(@bgr) {
+    position: relative;
+
+    &::before {
+        .wing(@bgr);
+        right: 100%;
+    }
+}
+
+.right-wing(@bgr) {
+    position: relative;
+
+    &::after {
+        .wing(@bgr);
+        left: 100%;
+    }
+}
+
+.gradient(@direction, @direction-ie, @from: rgba(0,0,0, 1) 0%, @to: rgba(0,0,0, 0) 100%) {
+    background: -moz-linear-gradient(@direction,    @from, @to); // FF3.6-15
+    background: -webkit-linear-gradient(@direction, @from, @to); // Chrome10-25,Safari5.1-6
+    background: linear-gradient(@direction-ie,      @from, @to); // W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+
+}
+
+.shadow-top(@opacity: 0) {
+    .gradient(top, to bottom, rgba(0,0,0, @opacity) 0%);
+}
+
+.shadow-bottom(@opacity: 0) {
+    .gradient(bottom, to top, rgba(0,0,0, @opacity) 0%);
+}

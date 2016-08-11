@@ -1,0 +1,213 @@
+body {
+    color: @color-text;
+    .font-source-sans();
+    font-size: @font-basic-mob;
+    line-height: (6em / 4);
+    letter-spacing: -0.01em;
+
+    @media @screen-dtp {
+        font-size: @font-basic-dtp;
+        line-height: (5.25em / 3.5);
+    }
+}
+
+#content,
+footer {
+
+    // a {
+    //     // display: inline-block;
+    //     text-decoration: none;
+    //     border-bottom: 1px solid @color-link;
+    //     line-height: 1.25em;
+
+    //     &,
+    //     &:active,
+    //     &:visited {
+    //         color: @color-link;
+    //     }
+
+    //     &:hover {
+    //         //@TODO: think more... text shadow looks strange with this kind of design
+    //         // color: @color-link-active;
+    //         // text-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+    //         // color: @palette-green-flash;
+    //         border-bottom-style: dotted;
+    //         border-bottom-color: @color-link-active;
+    //     }
+    // }
+
+    a {
+        display: inline-block;
+        text-decoration: none;
+        border-bottom: 1px dotted @color-link;
+        line-height: 1.25em;
+        position: relative;
+
+        &,
+        &:active,
+        &:visited {
+            color: @color-link;
+        }
+
+        &:before {
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 0;
+            bottom: -1px;
+            height: 2px;
+            background: @color-link-active;
+            transition: width 1s;
+        }
+
+        &:hover {
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+
+    strong {
+        font-weight: bold;
+        color: @color-link;
+    }
+
+    em {
+        color: @color-header;
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        .font-jura();
+        color: @color-header;
+        line-height: (9em / 8);
+    }
+
+    h1 {}
+
+    h2 {}
+
+    h3 {
+        font-size: @font-heading-mob;
+        margin-bottom: (@font-ps-multiplier * 3);
+        padding-top: @basic-padding;
+
+        @media @screen-tab {
+            font-size: @font-heading-tab;
+        }
+
+        @media @screen-dtp {
+            font-size: @font-heading-dtp;
+        }
+    }
+
+    h4 {}
+
+    img {}
+
+    p,
+    ul,
+    ol {
+        margin-bottom: @font-ps-multiplier * 3;
+    }
+
+    ul,
+    ol {
+        ul,
+        ol {}
+    }
+
+    ul {
+        list-style: none;
+
+        li::before {
+            @bullet-size: image-height('../images/converted/ul-bullet.svg');
+            content: '';
+            display: inline-block;
+            background: url(../images/converted/ul-bullet.svg) no-repeat (@basic-padding - (@bullet-size / 2)) top;
+            width: (@basic-padding * 2);
+            height: @bullet-size;
+            margin-left: -(@basic-padding * 2);
+        }
+    }
+
+    li {
+        margin-left: (@basic-padding * 2);
+    }
+
+    q {}
+
+    table {}
+
+    /*
+     * Global list to be used for numbered page sections: action steps, structures etc
+     */
+    ol.global {
+        @global-list-left-offset-mob: @basic-padding * 2;
+        @global-list-left-offset-dtp: @basic-padding * 3;
+
+        counter-reset: listitem;
+
+        .counter() {
+            content: counter(listitem);
+            position: absolute;
+            left: -@global-list-left-offset-mob;
+            color: @color-background-highlight;
+            .font-os-condensed();
+            font-size: @font-ps-multiplier * 10;
+            line-height: 0.85em;
+            z-index: -1;
+
+            @media @screen-dtp {
+                left: -@global-list-left-offset-dtp;
+                font-size: @font-ps-multiplier * 20;
+            }
+        }
+
+        > li {
+            counter-increment: listitem;
+            margin-left: @global-list-left-offset-mob;
+            position: relative;
+
+            > *:first-child::before {
+                .counter();
+            }
+
+            >h3,
+            >h4,
+            >h5,
+            >h6 {
+                &:first-child {
+                    margin-left: -@global-list-left-offset-mob;
+
+                    &::before {
+                        content: none;
+                    }
+
+                    + *::before {
+                        .counter();
+                    }
+                }
+            }
+        }
+
+        @media @screen-dtp {
+            > li {
+                margin-left: @global-list-left-offset-dtp;
+
+                >h3,
+                >h4,
+                >h5,
+                >h6 {
+                    &:first-child {
+                        margin-left: -@global-list-left-offset-dtp;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,29 @@
+footer {
+    background: @color-underlay;
+    color: @color-text-on-dark;
+    padding: @basic-padding;
+    margin-top: @content-bottom-padding;
+
+    .left-wing(@color-underlay);
+    .right-wing(@color-underlay);
+
+    &,
+    &::before,
+    &::after {
+        .gradient(top, to bottom, #222 0%, @color-underlay 5px);
+    }
+
+    a {
+        border-color: @color-link-on-dark;
+
+        &,
+        &:active,
+        &:visited {
+            color: @color-link-on-dark;
+        }
+    }
+
+    .nav {
+        float: right;
+    }
+}

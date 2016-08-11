@@ -3,3 +3,5 @@
 */.npm-debug.log
 
 dummy/css/
+dummy/html/*.html
+dummy/images/converted/

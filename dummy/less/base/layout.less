@@ -1,0 +1,24 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+body {
+    overflow-x: hidden;
+}
+
+.wrapper-out {
+    max-width: @layout-outer-container-size;
+    margin: 0 auto;
+}
+
+.wrapper-in {
+    max-width: @layout-inner-container-size;
+    margin: 0 auto;
+    padding: 0 @basic-padding;
+}
+
+#content {
+    padding-top: @content-top-padding;
+}

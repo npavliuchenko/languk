@@ -1,0 +1,48 @@
+@header-logo-size: 140px;
+@header-logo-section-height: 200px;
+
+.page-header {
+
+    //
+    // Shadow layout
+    //
+
+    .left-wing(@color-underlay);
+    .right-wing(@color-underlay);
+
+    &::before {
+        .gradient(right, to left, #222 0%, @color-underlay 5px);
+        z-index: -2;
+    }
+
+    &::after {
+        .gradient(left, to right, #222 0%, @color-underlay 5px);
+        z-index: -2;
+    }
+
+    //
+    // Contents
+    //
+
+    h1 {
+        height: @header-logo-section-height;
+        width: @header-logo-size;
+        margin: 0 auto;
+        text-align: center;
+        background: url(../images/converted/lang-uk-logo.svg) no-repeat center center; //@TODO: compress SVG
+        background-size: 100%;
+        //@TODO: PNG fallback
+        overflow: hidden;
+        text-indent: -999em;
+
+        span {
+            line-height: @header-logo-section-height;
+            color: @color-site-title;
+            //@TODO: should be available only when no images
+        }
+    }
+
+    h2 {
+        display: none; // required for semantical page structure
+    }
+}

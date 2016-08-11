@@ -6,8 +6,9 @@
 @palette-black: #000000;
 @palette-black-light: #333333;
 @palette-green-flash: #79c753;
-@palette-blue-snorkel: #79c753;
-@palette-grey-c3: #777777;
+@palette-blue-snorkel: #034f84;
+@palette-grey-c4: #777777;
+@palette-grey-c3: #bebebe;
 @palette-grey-c2: #dddddd;
 @palette-grey-c1: #e7e7e7;
 
@@ -16,15 +17,52 @@
 //
 
 @color-background: @palette-white;
+@color-background-highlight: @palette-grey-c1;
+// @color-underlay: @palette-black-light;
+@color-underlay: #ccc;
 @color-text: @palette-black-light;
 @color-text-on-dark: @palette-grey-c3;
 @color-link: @palette-blue-snorkel;
-@color-link-active: @palette-blue-snorkel;
+@color-link-active: @palette-green-flash;
+@color-link-on-dark: @palette-green-flash;
+@color-link-on-dark-active: @palette-green-flash;
+@color-blueprint: @palette-green-flash;
+@color-site-title: @palette-blue-snorkel;
 @color-header: @palette-green-flash;
 
 //
 // Layout
 //
 
+@infinity: 4000px;
+
+@breakpoint-mobile: 640px;
+@breakpoint-tablet: 960px;
+@screensize-mob-max:   @breakpoint-mobile;
+@screensize-tab-min:  (@breakpoint-mobile + 1);
+@screensize-tab-max:   @breakpoint-tablet;
+@screensize-dtp-min: (@breakpoint-tablet + 1);
+@screen-mob: ~"only screen and (max-width: @{screensize-mob-max})";
+@screen-tab: ~"only screen and (min-width: @{screensize-tab-min}) and (max-width: @{screensize-tab-max})";
+@screen-dtp: ~"only screen and (min-width: @{screensize-dtp-min})";
+
+@basic-unit: 20px;
+@basic-padding: @basic-unit;
+
 @layout-outer-container-size: 1040px;
-@layout-inner-container-size: 640px;
+@layout-inner-container-size: 680px;
+@content-top-padding: @basic-padding * 2;
+@content-bottom-padding: @basic-padding * 7;
+
+//
+// Fonts
+//
+
+@font-ps-multiplier: 4.86px; //@TODO: stupid PS fonts, need to convert everything to int values for better rendering
+@font-basic-mob: @font-ps-multiplier * 3.5;
+@font-basic-dtp: @font-ps-multiplier * 4;
+// @font-basic-line: (6em / 4);
+@font-heading-mob: @font-ps-multiplier * 6;
+@font-heading-tab: @font-ps-multiplier * 7;
+@font-heading-dtp: @font-ps-multiplier * 8;
+@font-menu-dtp: @font-ps-multiplier * 5.5; // 26.74px

@@ -12,7 +12,8 @@ module.exports = function(grunt) {
                     cleancss: true,
                 },
                 files: {
-                    'css/lang-uk.css': 'less/lang-uk.less'
+                    'css/lang-uk.css': 'less/lang-uk.less',
+                    'css/lang-uk-ie.css': 'less/lang-uk-ie.less'
                 }
             },
             prod: {
@@ -27,17 +28,41 @@ module.exports = function(grunt) {
             }
         },
 
-        // html_include: {
-        //     dev: {
-        //         options: {
-        //             workingDir: 'html/components',
-        //         },
-        //         files: {
-        //             // plugin paths structure is a bit hardcoded so...
-        //             'html': ['html/components/../*.html']
-        //         }
-        //     }
-        // },
+
+
+        svgmin: {
+            options: {},
+            dev: {
+                files: [
+                    { expand: true, cwd: 'svg', src: ['**/*.svg'], dest: 'images/converted' }
+                ]
+            }
+        },
+
+
+
+        svg2png: {
+            dev: {
+                files: [
+                    { cwd: 'svg/', src: ['**/*.svg'], dest: 'images/converted' }
+                ]
+            }
+        },
+
+
+
+        bake: {
+            dev: {
+                options: {
+                    basePath: 'html/partials'
+                },
+                files: {
+                    'html/manifest.html': 'html/pages/manifest.html'
+                }
+            },
+        },
+
+
 
         watch: {
             grunt: {
@@ -50,22 +75,33 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['less:dev']
             },
-            
-            // htmlbuild: {
-            //     files: [
-            //         'html/**/*.html'
-            //     ],
-            //     tasks: ['html_include']
-            // }
+
+            svg: {
+                files: [
+                    'svg/**/*.svg'
+                ],
+                tasks: ['svgmin', 'svg2png', 'bake']
+            },
+
+            html: {
+                files: [
+                    'html/**/*.html'
+                ],
+                tasks: ['bake']
+            }
         }
     });
 
+
+
     // load npm modules
     grunt.loadNpmTasks('grunt-contrib-less');
-    // grunt.loadNpmTasks('grunt-html-include');
+    grunt.loadNpmTasks('grunt-svgmin');
+    grunt.loadNpmTasks('grunt-svg2png');
+    grunt.loadNpmTasks('grunt-bake');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
+
     // register tasks
-    // grunt.registerTask('default', ['html_include', 'less', 'watch']);
-    grunt.registerTask('default', ['less:dev', 'watch']);
+    grunt.registerTask('default', ['less:dev', 'svgmin', 'svg2png', 'bake', 'watch']);
 };
