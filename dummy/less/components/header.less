@@ -46,3 +46,18 @@
         display: none; // required for semantical page structure
     }
 }
+
+#content {
+    @media @screen-dtp {
+        .left-wing(transparent);
+        .right-wing(transparent);
+
+        &::before,
+        &::after {
+            top: -5px;
+            height: 5px;
+            .gradient(bottom, to top, #222 0%, transparent 3px);
+            z-index: -2;
+        }
+    }
+}

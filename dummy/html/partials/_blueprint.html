@@ -1,23 +1,31 @@
 <div id="blueprint">
     <div class="wrapper-in">
         <ul>
-            <li class="other">
-                <span class="connector corpus">
-                    <!--(bake ../../images/converted/blueprint/connector-horizontal.svg)-->
+            <li class="item other">
+                <span class="wrapper">
+                    <span class="connector dictionary">
+                        <!--(bake ../../images/converted/blueprint/connector-dict.svg)-->
+                    </span>
+                    <span class="connector gazetteer">
+                        <!--(bake ../../images/converted/blueprint/connector-gazetteer.svg)-->
+                    </span>
+                    <span class="connector service">
+                        <!--(bake ../../images/converted/blueprint/connector-service.svg)-->
+                    </span>
                 </span>
-                <span class="connector dictionary">
-                </span>
-                <span class="connector gazetteer">
-                </span>
-                <span class="connector service">
-                    <!--(bake ../../images/converted/blueprint/connector-service.svg)-->
-                </span>
-                <span class="connector library">
-                </span>
-
             </li>
+
+            <li class="item other2">
+                <span class="wrapper">
+                    <span class="connector corpus">
+                        <!--(bake ../../images/converted/blueprint/connector-horizontal.svg)-->
+                    </span>
+                </span>
+            </li>
+
             <li class="item corpus">
-                <a href="#corpuses" class="icon">
+                <a href="#corpuses" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-corpus.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-corpus.png" alt="Іконка зі стопкою текстів" />
@@ -26,7 +34,8 @@
                 </a>
             </li>
             <li class="item dictionary">
-                <a href="#dictionaries" class="icon">
+                <a href="#dictionaries" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-dictionary.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-dictionary.png" alt="Іконка із ієрархією літер" />
@@ -35,7 +44,8 @@
                 </a>
             </li>
             <li class="item gazetteer">
-                <a href="#gazetteers" class="icon">
+                <a href="#gazetteers" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-gazetteer.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-gazetteer.png" alt="Іконка із різними написаннями літери" />
@@ -44,7 +54,8 @@
                 </a>
             </li>
             <li class="item service">
-                <a href="#services" class="icon">
+                <a href="#services" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-service.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-service.png" alt="Іконка із Зіркою Смерті" />
@@ -53,16 +64,25 @@
                 </a>
             </li>
             <li class="item library">
-                <a href="#libraries" class="icon">
+                <a href="#libraries" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-library.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-library.png" alt="Іконка з роботом R2-D2" />
                     <![endif]-->
                     <span class="label">Бібліотеки</span>
+
+                    <span class="connector library">
+                        <!--(bake ../../images/converted/blueprint/connector-lib.svg)-->
+                    </span>
+                    <span class="connector library-fallback">
+                        <!--(bake ../../images/converted/blueprint/connector-dict.svg)-->
+                    </span>
                 </a>
             </li>
             <li class="item model">
-                <a href="#models" class="icon">
+                <a href="#models" class="wrapper">
+                    <span class="icon"></span>
                     <!--(bake ../../images/converted/blueprint/icon-model.svg)-->
                     <!--[if lt IE 9]>
                         <img src="/images/blueprint/icon-model.png" alt="Іконка з 3D-моделлю літери" />
@@ -75,7 +95,16 @@
                 </a>
             </li>
             <li class="item app">
-                <span class="icon"><!--(bake ../../images/converted/blueprint/icon-app.svg)--></span>
+                <span class="wrapper">
+                    <span class="icon"></span>
+
+                    <!--(bake ../../images/converted/blueprint/icon-app.svg)-->
+
+                    <span class="m1"><!--(bake ../../images/converted/blueprint/icon-mech.svg)--></span>
+                    <span class="m2"><!--(bake ../../images/converted/blueprint/icon-mech.svg)--></span>
+                    <span class="m3"><!--(bake ../../images/converted/blueprint/icon-mech.svg)--></span>
+
+                </span>
             </li>
         </ul>
     </div>

@@ -7,9 +7,10 @@
 @blueprint-label-size-dtp: @font-ps-multiplier * 6;
 @blueprint-label-width: 6em;
 @blueprint-label-height: @basic-unit;
-@blueprint-icon-size: (100% * 200 / 1280); //
+@blueprint-icon-size: (100% * 200 / 1280); // from the original artwork
 @blueprint-icon-app-size: @blueprint-icon-size * 1.5;
 @blueprint-icon-min-size: 64px;
+@blueprint-icon-max-size: 100px;
 @blueprint-icon-border-mob: 3px;
 @blueprint-icon-border-tab: 4px;
 @blueprint-icon-border-dtp: 5px;
@@ -17,6 +18,9 @@
 @blueprint-color-background: @color-blueprint;
 @blueprint-color-scheme: @palette-white;
 @blueprint-color-icon: @palette-black-light;
+// @blueprint-icon-hover: fade(@blueprint-color-scheme, 25%);
+// @blueprint-icon-hover: fade(@blueprint-color-icon, 20%);
+@blueprint-icon-hover: darken(@blueprint-color-background, 10%);
 @blueprint-shadow-opacity: 0.25;
 @blueprint-shadow-size: 3px;
 
@@ -44,12 +48,12 @@
     &::before {
         content: '';
         .shadow-top(@blueprint-shadow-opacity);
-        top: 0px;
+        top: 0;
     }
 
     &::after {
         .shadow-bottom(@blueprint-shadow-opacity);
-        bottom: 0px;
+        bottom: 0;
     }
 
     @media @screen-dtp {
@@ -78,7 +82,6 @@
     }
 
     .item {
-        // background: green; //@TODO: remove!
         position: absolute;
         width: @blueprint-icon-size;
         height: 0;
@@ -86,7 +89,6 @@
         max-width: @blueprint-breakpoint-width;
 
         .label {
-            // background: rgba(255, 255, 255, 0.5); //@TODO: remove!
             .font-jura();
             font-size: @blueprint-label-size-mob;
             line-height: @basic-padding * 0.8;
@@ -96,33 +98,84 @@
             position: absolute;
             left: 50%;
             width: @blueprint-label-width;
-            margin: -@blueprint-icon-border-mob -(@blueprint-label-width / 2);
-
-
+            margin: 0 -(@blueprint-label-width / 2);
         }
 
         a {
             color: white;
         }
 
-        .icon {
+        .wrapper {
+            color: white;
             position: absolute;
             width: 100%;
             height: 100%;
             min-width: @blueprint-icon-min-size;
             min-height: @blueprint-icon-min-size;
-            border: @blueprint-icon-border-mob solid white;
+        }
+
+        .icon {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border: @blueprint-icon-border-mob solid @blueprint-color-scheme;
             border-radius: 50% 50%;
             background: @blueprint-color-background;
+            overflow: hidden;
+        }
+
+        // .progress {
+        //     width: @blueprint-icon-max-size;
+        //     height: @blueprint-icon-max-size;
+        //     border: 0 solid @blueprint-icon-hover;
+        //     border-radius: 50%;
+        //     position: absolute;
+        //     top: 50%;
+        //     left: 50%;
+        //     margin: -(@blueprint-icon-max-size / 2);
+        // }
+
+        .label,
+        .icon,
+        svg {
+            transition: all 0.5s;
+        }
+
+        // .progress {
+        //     transition: all 1s;
+        // }
+
+        a:hover {
+            .label {
+                color: @blueprint-color-icon;
+            }
+
+            .icon {
+                box-shadow: 0 2px 3px rgba(0,0,0, 0.5);
+                border-color: @blueprint-color-icon;
+                background: @blueprint-icon-hover;
+            }
+
+            //@TODO: .progress element is deprecated
+            // .progress {
+            //     // border-width: (@blueprint-icon-max-size / 2);
+            // }
+
+            svg {
+                transform: scale(1.1);
+            }
+
+            .connector svg {
+                transform: none;
+            }
         }
 
         svg {
-            @add-size: 30%;
+            @add-size: 20%;
             margin: -(@add-size / 2);
             width: 100% + @add-size;
             height: 100% + @add-size;
             position: relative;
-            //@TODO: PNG fallback
         }
 
         //
@@ -132,12 +185,12 @@
         .align-top() {
             top: (@basic-padding * 2);
 
-            .icon {
+            .wrapper {
                 top: 0;
             }
 
             .label {
-                top: -@blueprint-label-height;
+                top: -(@blueprint-label-height * 1.25);
             }
         }
 
@@ -146,25 +199,23 @@
             margin-top: -(@blueprint-icon-size / 2);
 
             .label {
-                bottom: -@blueprint-label-height;
+                bottom: -(@blueprint-label-height * 1.25);
             }
 
-            .icon {
+            .wrapper {
                 bottom: 0;
-                // top: 50%;
-                // transform: translateY(-50%); //@TODO: test with -margin
             }
         }
 
         .align-bottom() {
             bottom: (@basic-padding * 2);
 
-            .icon {
+            .wrapper {
                 bottom: 0;
             }
 
             .label {
-                bottom: -@blueprint-label-height;
+                bottom: -(@blueprint-label-height * 1.25);
             }
         }
 
@@ -176,7 +227,7 @@
                 left: (@blueprint-icon-size * 1.2);
             }
 
-            .icon {
+            .wrapper {
                 left: 0;
             }
         }
@@ -189,11 +240,10 @@
                 right: (@blueprint-icon-size * 1.2);
             }
 
-            .icon {
+            .wrapper {
                 right: 0;
             }
         }
-
 
 
         &.corpus {
@@ -244,7 +294,8 @@
             }
         }
 
-        &.app {
+        &.app,
+        &.other {
             width: @blueprint-icon-app-size;
             height: 0;
             padding-bottom: @blueprint-icon-app-size;
@@ -252,6 +303,56 @@
             top: 50%;
             margin-left: -(@blueprint-icon-app-size / 2);
             margin-top: -(@blueprint-icon-app-size / 2);
+        }
+
+        &.other2 {
+            .align-middle();
+            left: 50%;
+            width: @blueprint-icon-app-size;
+            margin-left: -(@blueprint-icon-app-size / 2);
+        }
+
+        &.app { // mech animation stuff...
+            .wrapper > svg {
+                display: none;
+            }
+
+            .m1,
+            .m2,
+            .m3 {
+                position: absolute;
+            }
+
+            .m1 {
+                left: 35%;
+                top: 35%;
+                right: -5%;
+
+                svg {
+                    animation: rotate-l 60s infinite steps(720);
+                }
+            }
+
+            .m2 {
+                top: -5%;
+                left: 12%;
+                right: 34%;
+                transform: rotate(28deg);
+
+                svg {
+                    animation: rotate-r 60s infinite steps(720);
+                }
+            }
+
+            .m3 {
+                left: -5%;
+                right: 63%;
+                top: 50%;
+
+                svg {
+                    animation: rotate-r 60s infinite steps(720);
+                }
+            }
         }
 
         @media @blueprint-breakpoint {
@@ -262,8 +363,7 @@
                     text-align: left;
                     left: -@blueprint-icon-border-mob;
                     right: auto;
-                    margin-left: 0;
-                    margin-right: 0;
+                    margin: 0;
                 }
             }
 
@@ -274,8 +374,7 @@
                     text-align: right;
                     right: -@blueprint-icon-border-mob;
                     left: auto;
-                    margin-left: 0;
-                    margin-right: 0;
+                    margin: 0;
                 }
             }
         }
@@ -287,47 +386,122 @@
 
     .connector {
         position: absolute;
+        line-height: 0;
 
         svg {
+            margin: 0;
             width: 100%;
+            height: 100%;
             //height: auto;
         }
 
+        @blueprint-horizontal-arrow-length: 180%;
+
+        &.model,
         &.corpus {
             top: 50%;
-            left: @blueprint-icon-size;
-            right: 50% + (@blueprint-icon-app-size / 2);
+            right: 100%;
+            width: @blueprint-horizontal-arrow-length;
 
             svg {
+                // margin: 0;
                 margin-top: -50%;
             }
         }
 
-        &.model {
-            top: 50%;
-            left: -200%;
-            right: 100%;
-            margin-right: @blueprint-icon-border-dtp;
-            line-height: 0;
-
-            svg {
-                margin: 0;
-                margin-top: -50%;
-            }
+        &.corpus {
+            width: 120%;
+            min-width: @blueprint-icon-min-size * @blueprint-horizontal-arrow-length / 100%;
         }
 
         &.service {
-            left: 57%;
-            width: 12%;
-            top: 18%;
+            left: 86%;
+            bottom: 60%;
+            width: 40%;
+            transform: rotate(10deg);
+
+            @media @blueprint-breakpoint, @screen-dtp {
+                left: 80%;
+                bottom: 70%;
+                width: 50%;
+                transform: none;
+            }
+
+            @media only screen and (max-width: 400px) {
+                left: 70%;
+                bottom: 75%;
+                transform: rotate(-10deg);
+            }
+        }
+
+        &.dictionary,
+        &.library-fallback {
+            top: -50%;
+            bottom: 86%;
+            transform: rotate(-30deg);
+            transform-origin: 100% 100%;
+
+            @media @screen-dtp {
+                transform: rotate(-10deg);
+            }
+        }
+
+        &.gazetteer {
+            top: 86%;
+            bottom: -50%;
+            transform: rotate(30deg);
+            transform-origin: 100% 0;
+
+            @media @screen-dtp {
+                transform: rotate(10deg);
+            }
+        }
+
+        &.dictionary,
+        &.gazetteer,
+        &.library-fallback {
+            left: -50%;
+            right: 86%;
+
+            @media @blueprint-breakpoint {
+                transform: none;
+            }
+        }
+
+        // &.library {
+        //     top: 98%;
+        //     height: 71.5%;
+
+        //     left: 50%;
+        //     width: 93%;
+
+        //     @media @screen-tab {
+        //         top: 71%;
+        //     }
+        // }
+
+        &.library {
+            right: 60%;
+            width: 145%;
+            bottom: -20%;
+
+            @media @blueprint-breakpoint {
+                display: none;
+            }
+        }
+
+        &.library-fallback {
+            display: none;
+
+            @media @blueprint-breakpoint {
+                display: block;
+            }
         }
     }
 
     @media @screen-tab {
         .item .label {
             font-size: @blueprint-label-size-tab;
-            margin-top: -@blueprint-icon-border-tab;
-            margin-bottom: -@blueprint-icon-border-tab;
         }
 
         .item .icon {
@@ -338,12 +512,22 @@
     @media @screen-dtp {
         .item .label {
             font-size: @blueprint-label-size-dtp;
-            margin-top: -@blueprint-icon-border-dtp;
-            margin-bottom: -@blueprint-icon-border-dtp;
         }
 
         .item .icon {
             border-width: @blueprint-icon-border-dtp;
         }
+    }
+}
+
+@keyframes rotate-l {
+    100% {
+       transform: rotate(360deg);
+    }
+}
+
+@keyframes rotate-r {
+    100% {
+       transform: rotate(-360deg);
     }
 }
