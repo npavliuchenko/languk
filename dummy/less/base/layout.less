@@ -1,6 +1,6 @@
 *,
-*::before,
-*::after {
+*:before,
+*:after {
     box-sizing: border-box;
 }
 
@@ -21,18 +21,14 @@ body {
 
 #content {
     padding-top: @content-top-padding;
-    transition: left 1s, opacity 1s linear;
-    position: relative;
+    // transition: left 1s, opacity 1s linear;
+    // position: relative;
 
-    left: 100%;
-    opacity: 0;
+    // left: 100%;
+    // opacity: 0;
 
-    .loaded & {
-        left: 0;
-        opacity: 1;
-    }
-
-    // .unloaded & {
-    //     left: -100%;
+    // .loaded & {
+    //     left: 0;
+    //     opacity: 1;
     // }
 }

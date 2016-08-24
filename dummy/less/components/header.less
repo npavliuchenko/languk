@@ -10,12 +10,12 @@
     .left-wing(@color-underlay);
     .right-wing(@color-underlay);
 
-    &::before {
+    &:before {
         .gradient(right, to left, #222 0%, @color-underlay 5px);
         z-index: -2;
     }
 
-    &::after {
+    &:after {
         .gradient(left, to right, #222 0%, @color-underlay 5px);
         z-index: -2;
     }
@@ -29,9 +29,8 @@
         width: @header-logo-size;
         margin: 0 auto;
         text-align: center;
-        background: url(../images/converted/lang-uk-logo.svg) no-repeat center center; //@TODO: compress SVG
+        background: url(../images/converted/lang-uk-logo.svg) no-repeat center center;
         background-size: 100%;
-        //@TODO: PNG fallback
         overflow: hidden;
         text-indent: -999em;
 
@@ -52,8 +51,8 @@
         .left-wing(transparent);
         .right-wing(transparent);
 
-        &::before,
-        &::after {
+        &:before,
+        &:after {
             top: -5px;
             height: 5px;
             .gradient(bottom, to top, #222 0%, transparent 3px);

@@ -18,8 +18,6 @@
 @blueprint-color-background: @color-blueprint;
 @blueprint-color-scheme: @palette-white;
 @blueprint-color-icon: @palette-black-light;
-// @blueprint-icon-hover: fade(@blueprint-color-scheme, 25%);
-// @blueprint-icon-hover: fade(@blueprint-color-icon, 20%);
 @blueprint-icon-hover: darken(@blueprint-color-background, 10%);
 @blueprint-shadow-opacity: 0.25;
 @blueprint-shadow-size: 3px;
@@ -38,20 +36,20 @@
     box-shadow: 0 2px 5px #111;
     position: relative;
 
-    &::before,
-    &::after {
+    &:before,
+    &:after {
         position: absolute;
         width: 100%;
         height: @blueprint-shadow-size;
     }
 
-    &::before {
+    &:before {
         content: '';
         .shadow-top(@blueprint-shadow-opacity);
         top: 0;
     }
 
-    &::after {
+    &:after {
         .shadow-bottom(@blueprint-shadow-opacity);
         bottom: 0;
     }
@@ -59,7 +57,7 @@
     @media @screen-dtp {
         box-shadow: none;
 
-        &::after {
+        &:after {
             content: '';
         }
     }
@@ -386,7 +384,6 @@
             margin: 0;
             width: 100%;
             height: 100%;
-            //height: auto;
         }
 
         @blueprint-horizontal-arrow-length: 180%;
@@ -398,7 +395,6 @@
             width: @blueprint-horizontal-arrow-length;
 
             svg {
-                // margin: 0;
                 margin-top: -50%;
             }
         }
@@ -461,18 +457,6 @@
                 transform: none;
             }
         }
-
-        // &.library {
-        //     top: 98%;
-        //     height: 71.5%;
-
-        //     left: 50%;
-        //     width: 93%;
-
-        //     @media @screen-tab {
-        //         top: 71%;
-        //     }
-        // }
 
         &.library {
             right: 60%;

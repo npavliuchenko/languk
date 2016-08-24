@@ -3,11 +3,9 @@
  * This license is copied below, and is also available with a FAQ at: http://scripts.sil.org/OFL
  */
 
-//@TODO: remove '1' was required for testing
-
 /* Jura: latin + cyrillic */
 @font-face {
-    font-family: 'Jura1';
+    font-family: 'Jura';
     src: url('../fonts/jura-demibold/subset-JuraDemiBold.eot');
     src: local('Jura1 DemiBold'), local('Jura1-DemiBold'),
         url('../fonts/jura-demibold/subset-JuraDemiBold.eot?#iefix') format('embedded-opentype'),
@@ -22,7 +20,7 @@
 /* Source Sans Pro: latin + cyrillic */
 // here is the re-assembled version with cyrillic characters included
 @font-face {
-    font-family: 'Source Sans Pro1';
+    font-family: 'Source Sans Pro';
     src: url('../fonts/source-sans-pro-regular/subset-SourceSansPro-Regular.eot');
     src: local('Source Sans Pro1'), local('SourceSansPro1-Regular'),
         url('../fonts/source-sans-pro-regular/subset-SourceSansPro-Regular.eot?#iefix') format('embedded-opentype'),
@@ -35,7 +33,7 @@
 }
 
 @font-face {
-    font-family: 'Source Sans Pro1';
+    font-family: 'Source Sans Pro';
     src: url('../fonts/source-sans-pro-bold/subset-SourceSansPro-Bold.eot');
     src: local('Source Sans Pro1 Bold'), local('SourceSansPro1-Bold'),
         url('../fonts/source-sans-pro-bold/subset-SourceSansPro-Bold.eot?#iefix') format('embedded-opentype'),
@@ -50,7 +48,7 @@
 /* Open Sans Condensed: numbers only */
 
 @font-face {
-    font-family: 'Open Sans Condensed1';
+    font-family: 'Open Sans Condensed';
     src: url('../fonts/open-sans-condensed-bold/subset-OpenSans-CondensedBold.eot');
     src: local('Open Sans Condensed1 Bold'), local('OpenSansCondensed-Bold'),
         url('../fonts/open-sans-condensed-bold/subset-OpenSans-CondensedBold.eot?#iefix') format('embedded-opentype'),
@@ -65,16 +63,13 @@
 
 
 .font-jura() {
-    // font-family: 'Jura', 'Arial Black', Gadget, sans-serif;
-    font-family: 'Jura1', 'Times New Roman', Gadget, sans-serif;
+    font-family: 'Jura', 'Arial Black', Gadget, sans-serif;
 }
 
 .font-source-sans() {
-    // font-family: 'Source Sans Pro', 'Helvetica', Arial, sans-serif;
-    font-family: 'Source Sans Pro1', 'Times New Roman', Arial, sans-serif;
+    font-family: 'Source Sans Pro', 'Helvetica', Arial, sans-serif;
 }
 
 .font-os-condensed() {
-    // font-family: 'Open Sans Condensed', 'Arial Black', Gadget, sans-serif;
-    font-family: 'Open Sans Condensed1', 'Times New Roman', Gadget, sans-serif;
+    font-family: 'Open Sans Condensed', 'Arial Black', Gadget, sans-serif;
 }

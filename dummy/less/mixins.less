@@ -7,13 +7,12 @@
     width: @infinity;
     background: @bgr;
     z-index: -1;
-    //@TODO: add shadows
 }
 
 .left-wing(@bgr) {
     position: relative;
 
-    &::before {
+    &:before {
         .wing(@bgr);
         right: 100%;
     }
@@ -22,7 +21,7 @@
 .right-wing(@bgr) {
     position: relative;
 
-    &::after {
+    &:after {
         .wing(@bgr);
         left: 100%;
     }

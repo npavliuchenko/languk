@@ -26,16 +26,16 @@
     .left-wing(@color-underlay);
     .right-wing(@color-underlay);
 
-    &::before {
+    &:before {
         .gradient(right, to left, #222 0%, @color-underlay 5px);
     }
 
-    &::after {
+    &:after {
         .gradient(left, to right, #222 0%, @color-underlay 5px);
     }
 
     ul {
-        &::before {
+        &:before {
             content: '';
             .shadow-top(0.5);
             position: absolute;
@@ -48,20 +48,18 @@
     @media @screen-dtp {
         position: absolute;
         top: 0;
-        // width: 100%;
         height: @mainnav-height-dtp;
         margin: 0;
 
         left: -@infinity;
         right: -@infinity;
 
-        &::before,
-        &::after {
+        &:before,
+        &:after {
             content: none;
-            // background: @mainnav-background;
         }
 
-        ul::before {
+        ul:before {
             content: none;
         }
     }
@@ -90,7 +88,7 @@
         padding: @mainnav-item-padding-mob-v @mainnav-item-padding-mob-h;
         position: relative;
 
-        &::before {
+        &:before {
             content: '';
             position: absolute;
             top: @mainnav-item-padding-mob-v;
@@ -109,7 +107,7 @@
 
         &:hover,
         &.active {
-            &::before {
+            &:before {
                 width: @mainnav-highlight-weight;
             }
         }
@@ -119,7 +117,7 @@
         }
 
         &.active {
-            &::before {
+            &:before {
                 background: @palette-green-flash;
             }
         }
@@ -150,7 +148,7 @@
         a {
             padding: @mainnav-item-padding-dtp;
 
-            &::before {
+            &:before {
                 top: auto;
                 bottom: 0;
                 left: @mainnav-item-padding-dtp;
@@ -160,7 +158,7 @@
 
             &:hover,
             &.active {
-                &::before {
+                &:before {
                     width: auto;
                     height: @mainnav-highlight-weight;
                 }
