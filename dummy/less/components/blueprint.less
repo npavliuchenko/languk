@@ -124,42 +124,36 @@
             overflow: hidden;
         }
 
-        // .progress {
-        //     width: @blueprint-icon-max-size;
-        //     height: @blueprint-icon-max-size;
-        //     border: 0 solid @blueprint-icon-hover;
-        //     border-radius: 50%;
-        //     position: absolute;
-        //     top: 50%;
-        //     left: 50%;
-        //     margin: -(@blueprint-icon-max-size / 2);
-        // }
+        @blueprint-transition-icon-scale: 1s ease 0.5s;
+        @blueprint-transition-icon-recolor: 0.75s ease-in 0.25s;
 
-        .label,
-        .icon,
-        svg {
-            transition: all 0.5s;
+        .label {
+            transition: color @blueprint-transition-icon-recolor;
         }
 
-        // .progress {
-        //     transition: all 1s;
-        // }
+        .icon {
+            transition: transform @blueprint-transition-icon-scale,
+                        box-shadow @blueprint-transition-icon-scale,
+                        background @blueprint-transition-icon-scale,
+                        border-color @blueprint-transition-icon-recolor;
+        }
+
+        svg {
+            transition: transform @blueprint-transition-icon-scale;
+        }
 
         a:hover {
             .label {
                 color: @blueprint-color-icon;
+                animation: swing 0.5s 1 steps(24);
             }
 
             .icon {
                 box-shadow: 0 2px 3px rgba(0,0,0, 0.5);
                 border-color: @blueprint-color-icon;
                 background: @blueprint-icon-hover;
+                transform: scale(1.05);
             }
-
-            //@TODO: .progress element is deprecated
-            // .progress {
-            //     // border-width: (@blueprint-icon-max-size / 2);
-            // }
 
             svg {
                 transform: scale(1.1);
@@ -529,5 +523,22 @@
 @keyframes rotate-r {
     100% {
        transform: rotate(-360deg);
+    }
+}
+
+@keyframes swing {
+    @blueprint-swing-size: 5deg;
+
+    12.5% {
+       transform: rotate(@blueprint-swing-size);
+    }
+    37.5% {
+       transform: rotate(-(@blueprint-swing-size * 0.75));
+    }
+    62.5% {
+       transform: rotate((@blueprint-swing-size * 0.5));
+    }
+    87.5% {
+       transform: rotate(-(@blueprint-swing-size * 0.25));
     }
 }

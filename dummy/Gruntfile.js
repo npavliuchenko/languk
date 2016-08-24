@@ -57,7 +57,9 @@ module.exports = function(grunt) {
                     basePath: 'html/partials'
                 },
                 files: {
-                    'html/manifest.html': 'html/pages/manifest.html'
+                    'html/manifest.html': 'html/pages/manifest.html',
+                    'html/typography.html': 'html/pages/typography.html',
+                    // 'html/form.html': 'html/pages/form.html',
                 }
             },
         },
@@ -85,7 +87,8 @@ module.exports = function(grunt) {
 
             html: {
                 files: [
-                    'html/*/*.html'
+                    'html/*/*.html',
+                    'html/*/*/*.html'
                 ],
                 tasks: ['bake']
             }

@@ -1,3 +1,5 @@
+@typography-paragraph-margin: @font-ps-multiplier * 3;
+
 body {
     color: @color-text;
     .font-source-sans();
@@ -66,14 +68,16 @@ footer {
             }
         }
     }
+}
 
+#content {
     strong {
         font-weight: bold;
         color: @color-link;
     }
 
     em {
-        color: @color-header;
+        color: @color-text-on-dark;
     }
 
     h1,
@@ -81,7 +85,8 @@ footer {
     h3,
     h4,
     h5,
-    h6 {
+    h6,
+    caption {
         .font-jura();
         color: @color-header;
         line-height: (9em / 8);
@@ -89,7 +94,18 @@ footer {
 
     h1 {}
 
-    h2 {}
+    h2 {
+        font-size: @font-heading-mob;
+        margin: -@basic-padding -@basic-padding (@basic-padding * 2);
+        background: @color-site-title;
+        color: @color-background;
+        padding: @basic-padding;
+        opacity: 0.75;
+
+        @media @screen-dtp {
+            margin-top: -(@basic-padding * 2);
+        }
+    }
 
     h3 {
         font-size: @font-heading-mob;
@@ -105,43 +121,171 @@ footer {
         }
     }
 
-    h4 {}
+    h4 {
+        font-size: (@font-heading-mob * 0.75);
 
-    img {}
+        @media @screen-tab {
+            font-size: (@font-heading-tab * 0.75);
+        }
 
+        @media @screen-dtp {
+            font-size: (@font-heading-dtp * 0.75);
+        }
+    }
+
+    img {
+        max-width: 100%;
+    }
+
+    h4,
+    h5,
+    h6,
     p,
     ul,
     ol {
-        margin-bottom: @font-ps-multiplier * 3;
+        margin-bottom: @typography-paragraph-margin;
     }
+
+    img,
+    blockquote,
+    table {
+        margin-top: (@typography-paragraph-margin * 2);
+        margin-bottom: (@typography-paragraph-margin * 2);
+    }
+
+    q,
+    cite {
+        color: @color-text-secondary;
+
+        &:before {
+            content: "«";
+        }
+
+        &:after {
+            content: "»";
+        }
+    }
+
+    blockquote {
+        color: @color-text-secondary;
+        font-size: @font-heading-mob;
+        line-height: 1.25em;
+        position: relative;
+
+        &:before {
+            content: "\201C";
+            color: @color-header;
+            font-size: 1.5em;
+            position: absolute;
+            left: -@basic-padding;
+            top: 0.125em;
+
+            @media @screen-dtp {
+                left: -(@basic-padding * 2);
+                font-size: 3em;
+            }
+        }
+    }
+
+    code {
+        color: @color-text-secondary;
+        font-family: "Inconsolata", "Lucida Console", Monaco, monospace;
+    }
+
+    p.code {
+        padding-left: (@basic-padding * 2);
+    }
+
+    /*
+     * Tables
+     */
+
+    table {
+        max-width: 100%;
+    }
+
+    caption {
+        text-align: left;
+        padding-bottom: @basic-padding;
+    }
+
+    td,
+    th {
+        border-top: 1px solid @palette-grey-c1;
+        padding: (@basic-padding / 2);
+        font-size: 0.85em;
+        line-height: 1.25em;
+        text-align: left;
+
+        &:first-child {
+            padding-left: 0;
+        }
+
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    tr:first-child {
+        td,
+        th{
+            border-top: none;
+            padding-top: 0;
+        }
+    }
+
+    tr:last-child {
+        td,
+        th{
+            padding-bottom: 0;
+        }
+    }
+
+    th {
+        color: @color-header;
+    }
+
+    /*
+     * Lists
+     */
 
     ul,
     ol {
-        ul,
-        ol {}
-    }
-
-    ul {
         list-style: none;
-
-        li::before {
-            @bullet-size: image-height('../images/converted/ul-bullet.svg');
-            content: '';
-            display: inline-block;
-            background: url(../images/converted/ul-bullet.svg) no-repeat (@basic-padding - (@bullet-size / 2)) top;
-            width: (@basic-padding * 2);
-            height: @bullet-size;
-            margin-left: -(@basic-padding * 2);
-        }
     }
 
     li {
         margin-left: (@basic-padding * 2);
+
+        &::before {
+            text-align: center;
+            display: inline-block;
+            width: (@basic-padding * 2);
+            margin-left: -(@basic-padding * 2);
+            color: @color-header;
+        }
     }
 
-    q {}
+    ul {
+        > li::before {
+            @bullet-size: image-height('../images/converted/ul-bullet.svg');
+            content: '';
+            background: url(../images/converted/ul-bullet.svg) no-repeat (@basic-padding - (@bullet-size / 2)) top;
+            height: @bullet-size;
+        }
+    }
 
-    table {}
+    ol {
+        counter-reset: listitem;
+
+        > li {
+            counter-increment: listitem;
+
+            &::before {
+                content: counters(listitem,".") ".";
+            }
+        }
+    }
 
     /*
      * Global list to be used for numbered page sections: action steps, structures etc
@@ -172,6 +316,10 @@ footer {
             counter-increment: listitem;
             margin-left: @global-list-left-offset-mob;
             position: relative;
+
+            &:before {
+                content: none;
+            }
 
             > *:first-child::before {
                 .counter();
