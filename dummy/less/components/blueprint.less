@@ -393,6 +393,7 @@
             top: 50%;
             right: 100%;
             width: @blueprint-horizontal-arrow-length;
+            height: 18%;
 
             svg {
                 margin-top: -50%;
@@ -402,18 +403,21 @@
         &.corpus {
             width: 120%;
             min-width: @blueprint-icon-min-size * @blueprint-horizontal-arrow-length / 100%;
+            height: 18%;
         }
 
         &.service {
             left: 86%;
             bottom: 60%;
             width: 40%;
+            height: 40%;
             transform: rotate(10deg);
 
             @media @blueprint-breakpoint, @screen-dtp {
                 left: 80%;
                 bottom: 70%;
                 width: 50%;
+                height: 50%;
                 transform: none;
             }
 
@@ -462,9 +466,14 @@
             right: 60%;
             width: 145%;
             bottom: -20%;
+            top: 10%;
 
             @media @blueprint-breakpoint {
                 display: none;
+            }
+
+            svg {
+                top: 0;
             }
         }
 
