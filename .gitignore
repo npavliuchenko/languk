@@ -1,7 +1,1 @@
-**/*/node_modules/
-*/npm-debug.log
-*/.npm-debug.log
-
-dummy/css/
-dummy/html/*.html
-dummy/images/converted/
+.DS_Store
