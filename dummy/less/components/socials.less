@@ -73,6 +73,10 @@
         top: @mainnav-height-dtp + @header-logo-section-height - @social-height - @social-offset-dtp;
         box-shadow: none;
 
+        .home & {
+            top: @mainnav-height-dtp-home + @header-logo-section-height - @social-height - @social-offset-dtp;
+        }
+
         ul {
             padding: 0 (@social-padding-dtp / 2) @social-offset-dtp;
         }

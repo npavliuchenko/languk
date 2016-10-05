@@ -1,4 +1,5 @@
 @typography-paragraph-margin: @font-ps-multiplier * 3;
+@typography-paragraph-underline: 5px;
 
 body {
     color: @color-text;
@@ -16,11 +17,11 @@ body {
 #content,
 footer {
     a {
-        display: inline-block;
         text-decoration: none;
         border-bottom: 1px dotted @color-link;
         line-height: 1.25em;
         position: relative;
+        transition: color 0.5s;
 
         &,
         &:active,
@@ -28,20 +29,33 @@ footer {
             color: @color-link;
         }
 
-        &:before {
-            content: '';
+        &:before,
+        &:after {
+            color: @color-header;
             position: absolute;
-            left: 0;
-            width: 0;
-            bottom: -1px;
-            height: 2px;
-            background: @color-link-active;
-            transition: width 1s;
+            margin: 0 (-@basic-unit);
+            padding: 0.05em 0 0;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        &:before {
+            content: '[';
+            left: -0.3em;
+        }
+
+        &:after {
+            content: ']';
+            right: -0.3em;
         }
 
         &:hover {
-            &:before {
-                width: 100%;
+            color: @color-header;
+
+            &:before,
+            &:after {
+                margin: 0;
+                opacity: 1;
             }
         }
     }
@@ -72,15 +86,31 @@ footer {
     h1 {}
 
     h2 {
+        text-align: center;
         font-size: @font-heading-mob;
-        margin: -@basic-padding -@basic-padding (@basic-padding * 2);
-        background: @color-site-title;
-        color: @color-background;
-        padding: @basic-padding;
-        opacity: 0.75;
+        margin: -@basic-padding 0 (@basic-padding * 2 + @typography-paragraph-underline);
+        color: @color-page-header;
+        padding: (@basic-padding * 2) 0;
+        line-height: 0.95em;
+        position: relative;
+
+        @media @screen-tab {
+            font-size: @font-heading-tab;
+        }
 
         @media @screen-dtp {
-            margin: @basic-padding * 1.5 0 @basic-padding;
+            margin-top: -(@basic-padding * 2);
+            font-size: @font-heading-dtp;
+        }
+
+        &:after {
+            content: '';
+            position: absolute;
+            background: @palette-grey-c1;
+            top: 100%;
+            height: @typography-paragraph-underline;
+            left: 25%;
+            right: 25%;
         }
     }
 
