@@ -75,7 +75,9 @@
         }
 
         @media @screen-dtp {
-            height: @blueprint-height-dtp;
+            .home & {
+                height: @blueprint-height-dtp;
+            }
         }
     }
 
@@ -413,12 +415,22 @@
             height: 40%;
             transform: rotate(10deg);
 
-            @media @blueprint-breakpoint, @screen-dtp {
+            @media @blueprint-breakpoint {
                 left: 80%;
                 bottom: 70%;
                 width: 50%;
                 height: 50%;
                 transform: none;
+            }
+
+            @media @screen-dtp {
+                .home & {
+                    left: 80%;
+                    bottom: 70%;
+                    width: 50%;
+                    height: 50%;
+                    transform: none;
+                }
             }
 
             @media only screen and (max-width: 400px) {
@@ -436,7 +448,9 @@
             transform-origin: 100% 100%;
 
             @media @screen-dtp {
-                transform: rotate(-10deg);
+                .home & {
+                    transform: rotate(-10deg);
+                }
             }
         }
 
@@ -447,7 +461,9 @@
             transform-origin: 100% 0;
 
             @media @screen-dtp {
-                transform: rotate(10deg);
+                .home & {
+                    transform: rotate(10deg);
+                }
             }
         }
 
@@ -497,12 +513,14 @@
     }
 
     @media @screen-dtp {
-        .item .label {
-            font-size: @blueprint-label-size-dtp;
-        }
+        .home & {
+            .item .label {
+                font-size: @blueprint-label-size-dtp;
+            }
 
-        .item .icon {
-            border-width: @blueprint-icon-border-dtp;
+            .item .icon {
+                border-width: @blueprint-icon-border-dtp;
+            }
         }
     }
 }

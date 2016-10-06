@@ -45,7 +45,7 @@
 @screensize-tab-max:   @breakpoint-tablet;
 @screensize-dtp-min: (@breakpoint-tablet + 1);
 @screen-mob: ~"only screen and (max-width: @{screensize-mob-max})";
-@screen-tab: ~"only screen and (min-width: @{screensize-tab-min}) and (max-width: @{screensize-tab-max})";
+@screen-tab: ~"only screen and (min-width: @{screensize-tab-min})";
 @screen-dtp: ~"only screen and (min-width: @{screensize-dtp-min})";
 
 @basic-unit: 20px;
@@ -60,7 +60,8 @@
 // Fonts
 //
 
-@font-ps-multiplier: 4.86px; //@TODO: stupid PS fonts, need to convert everything to int values for better rendering
+// @font-ps-multiplier: 4.86px; //@TODO: stupid PS fonts, need to convert everything to int values for better rendering
+@font-ps-multiplier: 4.5px;
 @font-basic-mob: @font-ps-multiplier * 3.5;
 @font-basic-dtp: @font-ps-multiplier * 4;
 // @font-basic-line: (6em / 4);

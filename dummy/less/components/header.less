@@ -25,8 +25,8 @@
     //
 
     h1 {
-        height: @header-logo-section-height;
-        width: @header-logo-size;
+        height: (@header-logo-section-height * 0.75);
+        width: (@header-logo-size * 0.70); // != 0.75 to keep the internal padding following grid
         margin: 0 auto;
         text-align: center;
         background: url(../images/converted/lang-uk-logo.svg) no-repeat center center;
@@ -35,9 +35,18 @@
         text-indent: -999em;
 
         span {
-            line-height: @header-logo-section-height;
+            line-height: (@header-logo-section-height * 0.75);
             color: @color-site-title;
             //@TODO: should be available only when no images
+        }
+
+        .home & {
+            height: @header-logo-section-height;
+            width: @header-logo-size;
+
+            span {
+                line-height: @header-logo-section-height;
+            }
         }
     }
 
