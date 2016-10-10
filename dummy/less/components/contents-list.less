@@ -1,0 +1,15 @@
+#contentsList {
+    margin-bottom: (@basic-padding * 2);
+    position: relative;
+
+    ul {
+        margin-bottom: 0;
+    }
+
+    ul > li{
+        &:before {
+            content: '\2192';
+            background: transparent;
+        }
+    }
+}
